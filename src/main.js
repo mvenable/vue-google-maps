@@ -1,4 +1,5 @@
 import {load, loaded} from './manager.js';
+import HeatMap from './components/heatmap';
 import Marker from './components/marker';
 import Cluster from './components/cluster';
 import Polyline from './components/polyline';
@@ -21,7 +22,7 @@ import {DeferredReady} from './utils/deferredReady';
 // export everything
 export {load, loaded, Marker, Cluster, Polyline, Polygon, Circle, Rectangle,
   InfoWindow, Map, PlaceInput, MapElementMixin, Autocomplete,
-  MountableMixin};
+  MountableMixin, HeatMap};
 
 export function install(Vue, options) {
   options = _.defaults(options, {
@@ -54,5 +55,6 @@ export function install(Vue, options) {
     Vue.component('GmapAutocomplete', Autocomplete);
     Vue.component('GmapPlaceInput', PlaceInput);
     Vue.component('GmapStreetViewPanorama', StreetViewPanorama);
+    Vue.component('GmapHeatMap', HeatMap);
   }
 }
