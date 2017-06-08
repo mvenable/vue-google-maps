@@ -12,6 +12,10 @@ var _propsBinder = require('../utils/propsBinder.js');
 
 var _propsBinder2 = _interopRequireDefault(_propsBinder);
 
+var _genericPropsBinder = require('../utils/genericPropsBinder.js');
+
+var _genericPropsBinder2 = _interopRequireDefault(_genericPropsBinder);
+
 var _getPropsValuesMixin = require('../utils/getPropsValuesMixin.js');
 
 var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
@@ -33,6 +37,18 @@ var props = {
     default: function _default() {
       return {};
     }
+  },
+  opacity: {
+    twoWay: true,
+    type: Number
+  },
+  radius: {
+    twoWay: true,
+    type: Number
+  },
+  gradient: {
+    twoWay: true,
+    type: Number
   }
 };
 
@@ -85,7 +101,8 @@ exports.default = {
   methods: {
     createMarker: function createMarker(options) {
       this.$markerObject = new google.maps.visualization.HeatmapLayer(options);
-      (0, _propsBinder2.default)(this, this.$markerObject, props);
+      (0, _genericPropsBinder2.default)(this, this.$markerObject, _lodash2.default.pick(props, ['opacity', 'radius', 'gradient']));
+      (0, _propsBinder2.default)(this, this.$markerObject, _lodash2.default.pick(props, ['data']));
       if (this.$clusterObject) {
         this.$clusterObject.addMarker(this.$markerObject);
       }

@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import propsBinder from '../utils/propsBinder.js';
+import genericPropsBinder from '../utils/genericPropsBinder.js'
 import getPropsValuesMixin from '../utils/getPropsValuesMixin.js';
 import MapElementMixin from './mapElementMixin';
 
@@ -14,6 +15,18 @@ const props = {
     default() {
       return {};
     }
+  },
+  opacity: {
+    twoWay: true,
+    type: Number
+  },
+  radius: {
+    twoWay: true,
+    type: Number
+  },
+  gradient: {
+    twoWay: true,
+    type: Number
   }
 };
 
@@ -67,7 +80,8 @@ export default {
   methods: {
     createMarker (options) {
       this.$markerObject = new google.maps.visualization.HeatmapLayer(options);
-      propsBinder(this, this.$markerObject, props);
+      genericPropsBinder(this, this.$markerObject, _.pick(props, ['opacity', 'radius', 'gradient']));
+      propsBinder(this, this.$markerObject, _.pick(props, ['data']));
       if (this.$clusterObject) {
         this.$clusterObject.addMarker(this.$markerObject);
       }
