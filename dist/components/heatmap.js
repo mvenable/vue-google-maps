@@ -48,7 +48,15 @@ var props = {
   },
   gradient: {
     twoWay: true,
+    type: Array
+  },
+  maxIntensity: {
+    twoWay: true,
     type: Number
+  },
+  dissipating: {
+    twoWay: true,
+    type: Boolean
   }
 };
 
@@ -101,7 +109,7 @@ exports.default = {
   methods: {
     createMarker: function createMarker(options) {
       this.$markerObject = new google.maps.visualization.HeatmapLayer(options);
-      (0, _genericPropsBinder2.default)(this, this.$markerObject, _lodash2.default.pick(props, ['opacity', 'radius', 'gradient']));
+      (0, _genericPropsBinder2.default)(this, this.$markerObject, _lodash2.default.pick(props, ['opacity', 'radius', 'gradient', 'maxIntensity', 'dissipating']));
       (0, _propsBinder2.default)(this, this.$markerObject, _lodash2.default.pick(props, ['data']));
       if (this.$clusterObject) {
         this.$clusterObject.addMarker(this.$markerObject);
